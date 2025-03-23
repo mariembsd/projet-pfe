@@ -1,0 +1,17 @@
+.admin-navbar {
+    background: #34495e;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: calc(100% - 250px);
+    left: 250px;
+    top: 0;
+    height: 60px;
+  }
+  .admin-icons {
+    font-size: 20px;
+  }
+  

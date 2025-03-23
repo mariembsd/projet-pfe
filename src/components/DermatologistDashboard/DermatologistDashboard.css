@@ -1,0 +1,12 @@
+.derm-dashboard {
+    display: flex;
+  }
+  .derm-main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: 100%;
+  }
+  .dashboard-content {
+    padding: 80px 20px;
+  }
+  

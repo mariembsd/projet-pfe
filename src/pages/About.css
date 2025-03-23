@@ -1,0 +1,97 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  h1, h2, h3, h4 {
+    font-weight: bold;
+    color: #0077b6;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Hero Section */
+  .animated-bg {
+    background: linear-gradient(135deg, #e0f2fe, #bde0fe);
+    text-align: center;
+    padding: 4rem 0;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  .animated-bg h1 {
+    font-size: 2.5rem;
+    color: #023e8a;
+  }
+  
+  .btn-primary {
+    background-color: #0077b6;
+    border: none;
+    transition: 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #023e8a;
+  }
+  
+  /* Services Section */
+  .bg-light {
+    background-color: #e3f2fd !important;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  
+  /* Icons */
+  .bi {
+    font-size: 2rem;
+    color: #0077b6;
+  }
+  
+  /* How It Works */
+  .rounded-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #0077b6 !important;
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+  
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .fade-in {
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  /* Button Pulse Effect */
+  .btn-pulse {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 119, 182, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 119, 182, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 119, 182, 0); }
+  }
+  

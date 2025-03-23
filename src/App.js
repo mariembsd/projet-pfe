@@ -11,7 +11,6 @@ import BookAppointment from './pages/Appointment';
 import Dermatologists from './pages/Dermatologist';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import DermatologistDashboardPage from './pages/DermatologistDashboardPage';
-import Patients from './components/DermatologistDashboard/Patients'; // Import the Patients component
 
 
 const App = () => {

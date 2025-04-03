@@ -32,7 +32,7 @@ const NavigationBar = () => {
             <Nav className="ms-auto">
               {/* Navigation Links */}
               {[
-                { name: "Home", path: "/" },
+                { name: "Homes", path: "/" },
                 { name: "About", path: "/about" },
                 { name: "Services", path: "/services" },
                 { name: "Contact", path: "/contact" },

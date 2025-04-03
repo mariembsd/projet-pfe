@@ -56,14 +56,14 @@ const NavigationBar = () => {
               ))}
 
               {/* Dark Mode Toggle */}
-              <Button
+              {/* <Button
                 variant={darkMode ? "light" : "dark"}
                 className="ms-3 toggle-button"
                 onClick={() => setDarkMode(!darkMode)}
                 title="Toggle Dark Mode"
               >
                 {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
-              </Button>
+              </Button> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

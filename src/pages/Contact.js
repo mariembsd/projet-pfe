@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import NavigationBar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
 
 const Contact = () => {
   useEffect(() => {
@@ -39,7 +41,7 @@ const Contact = () => {
 
   return (
     <div className="contact-page">
-     
+     <NavigationBar/>
       
       {/* Hero Section */}
       <section className="py-5 bg-light">
@@ -195,7 +197,7 @@ const Contact = () => {
         </div>
       </section>
 
-      
+      <Footer/>
     </div>
   );
 };

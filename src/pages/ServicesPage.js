@@ -4,10 +4,13 @@ import { ArrowRight, Heart, Calendar, MessageSquare, Image, User, TestTube, Drop
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ServicesPage.css';
+import NavigationBar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
 
 const Index = () => {
   return (
     <div className="services-page">
+      <NavigationBar/>
       {/* Hero Section */}
       <header className="hero-section py-5">
         <Container>
@@ -375,6 +378,7 @@ const Index = () => {
           <Button variant="light" size="lg" className="rounded-pill">Get Started Now</Button>
         </Container>
       </section>
+      <Footer/>
     </div>
   );
 };

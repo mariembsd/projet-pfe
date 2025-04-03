@@ -7,11 +7,14 @@ import GenderToggle from '../components/gender/GenderToggle';
 import Testimonials from '../components/testimonials/Testimonials';
 import HowItWorks from '../components/howitworks/HowItWorks';
 import Chatbot from '../components/chatbott/chatbot';
+import NavigationBar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
+
 
 const HomePage = () => {
   return (
     <>
-  
+    <NavigationBar/>
       <Header />
       <ConsultationForm/>
       <HowItWorks/>
@@ -20,6 +23,8 @@ const HomePage = () => {
      <DermaCareSection/>
      <GenderToggle/>
      <Testimonials/>
+     <Footer/>
+    
     
     </>
   );

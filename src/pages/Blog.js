@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import NavigationBar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
 
 const Blog = () => {
   useEffect(() => {
@@ -46,7 +48,7 @@ const Blog = () => {
   return (
     <div className="blog-page">
       
-      
+      <NavigationBar/>
       {/* Hero Section */}
       <section className="py-5 bg-light">
         <div className="container section-container">
@@ -188,7 +190,7 @@ const Blog = () => {
         </div>
       </section>
 
-      
+      <Footer/>
     </div>
   );
 };

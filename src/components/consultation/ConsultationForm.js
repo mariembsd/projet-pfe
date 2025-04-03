@@ -12,16 +12,16 @@ const ConsultationForm = () => {
         <div className="row justify-content-center">
           <div className="col-md-10">
             <div className="row g-3 align-items-center">
-              <div className="col-md-3">
+              <div className="col-md-4">
                 <input type="text" className="form-control input-custom" placeholder="Name" />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-4">
                 <input type="email" className="form-control input-custom" placeholder="Email" />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-4">
                 <input type="date" className="form-control input-custom" />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-6">
                 <select className="form-select input-custom">
                   <option>Type of Service</option>
                   <option>Skin Treatment</option>
@@ -29,7 +29,7 @@ const ConsultationForm = () => {
                   <option>General Checkup</option>
                 </select>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-6">
                 <select className="form-select input-custom">
                   <option>Name of Person</option>
                   <option>Dr. Smith</option>
@@ -37,7 +37,7 @@ const ConsultationForm = () => {
                   <option>Dr. Lee</option>
                 </select>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-12">
                 <button className=" btn-custom1">BOOK APPOINTMENT</button>
               </div>
             </div>

@@ -1,4 +1,3 @@
-// src/components/DermatologistDashboard/DermatologistSidebar.js
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaUserMd, FaNotesMedical, FaCalendarCheck } from "react-icons/fa";
@@ -10,9 +9,8 @@ const DermatologistSidebar = () => {
       <h2>Dermatologist Panel</h2>
       <ul>
         <li><Link to="/dermatologist/dashboard"><FaNotesMedical /> Dashboard</Link></li>
-        <li><Link to="/dermatologist/patients"><FaUserMd /> Patients</Link></li> {/* This is correct */}
-
-        <li><Link to="/dermatologist/appointments"><FaCalendarCheck /> Appointments</Link></li>
+        <li><Link to="patients"><FaUserMd /> Patients</Link></li>
+        <li><Link to="appointments"><FaCalendarCheck /> Appointments</Link></li>
       </ul>
     </div>
   );

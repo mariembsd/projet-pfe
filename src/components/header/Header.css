@@ -26,6 +26,18 @@
     margin-bottom: 20px;
   }
   
+  .hero-btn{
+    background-color: #B19470 !important;
+    border-color: #B19470;
+  }
+
+  .hero-btn:hover{
+    border: 2px solid;
+    border-color: #B19470;
+    background-color: transparent !important;
+    color:#B19470;
+  }
+
   .header-content p {
     font-size: 24px;
     margin-bottom: 40px;

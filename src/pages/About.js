@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./About.css";
+import NavigationBar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
+import aboutt from "../assets/images/dermatologist.jpg";
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
+
     <div className="dermaconnect-home">
-      
+      <NavigationBar/>
 
       {/* Hero Section */}
       <section className="animated-bg py-5">
@@ -23,8 +27,7 @@ const About = () => {
               </div>
             </div>
             <div className="col-lg-6 slide-in">
-              <img src="https://placehold.co/600x400/e0f2fe/333333.png?text=Dermatology+Care" alt="Dermatology Care" className="img-fluid rounded shadow" />
-            </div>
+            <img src={aboutt} alt="Dermatology Care" className="img-fluid rounded shadow" />            </div>
           </div>
         </div>
       </section>
@@ -191,7 +194,7 @@ const About = () => {
         </div>
       </section>
 
-     
+     <Footer/>
     </div>
   );
 };

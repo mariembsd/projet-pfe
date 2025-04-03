@@ -1,0 +1,32 @@
+.appointments-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px;
+}
+
+th {
+    background-color: #28a745;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e9ecef;
+}

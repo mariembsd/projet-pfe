@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import About from './pages/About';
@@ -11,7 +11,18 @@ import BookAppointment from './pages/Appointment';
 import Dermatologists from './pages/Dermatologist';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import DermatologistDashboardPage from './pages/DermatologistDashboardPage';
-
+import PatientsList from './components/DermatologistDashboard/PatientsList';
+import AppointmentSchedule from './components/DermatologistDashboard/AppointmentSchedule';
+import PatientSignup from './components/auth/PatientSignup';
+import DermatologistSignup from './components/auth/DermatologistSignup';
+import DashboardOverview from './components/AdminDashboard/DashboardOverview';
+import AdminToolsPage from './components/AdminDashboard/AdminToolsPage';
+import AnalyticsPage from './components/AdminDashboard/AnalyticsPage';
+import DashboardOverview from './components/AdminDashboard/DashboardOverview';
+import MessagesList from './components/AdminDashboard/MessagesList';
+import ReportsPage from './components/AdminDashboard/ReportsPage';
+import SettingsPage from './components/AdminDashboard/SettingsPage';
+// import SuccessPage from './components/auth/SuccessPage';
 
 const App = () => {
   return (
@@ -26,10 +37,102 @@ const App = () => {
         <Route path="/bookanappointment" element={<BookAppointment />} />  
         <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
         <Route path="/dermatologist/dashboard" element={<DermatologistDashboardPage />} />
-        <Route path="/dermatologist/patients" element={<Patients />} /> {/* Add this route */}
+        <Route path="/dermatologist/patients" element={<PatientsList />} />
+        <Route path="/x" element={<AppointmentSchedule />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/patient-signup" element={<PatientSignup />} />
+        <Route path="/dermatologist-signup" element={<DermatologistSignup />} />
+        <Route path="/signup" element={<SignUp />} />
+      
+          <Route index element={<DashboardOverview />} />
+          <Route path="dermatologists" element={<DermatologistsList />} />
+          <Route path="appointments" element={<AppointmentsList />} />
+          <Route path="messages" element={<MessagesList />} />
+          <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="reports" element={<ReportsPage />} />
+          <Route path="tools" element={<AdminToolsPage />} />
+          <Route path="settings" element={<SettingsPage />} />
+        
 
+        <Route path="*" element={<div>404 Not Found</div>} />
+
+        {/* <Route path="/success" element={<SuccessPage />} /> */
+     /* </Routes>
+    </Router>
+  );
+};
+
+export default App;*/ 
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import About from './pages/About';
+import Login from './components/auth/Login';
+import SignUp from './components/auth/SignUp';
+import ServicesPage from './pages/ServicesPage';
+import Contact from './pages/Contact';
+import Blog from './pages/Blog';
+import BookAppointment from './pages/Appointment';
+import Dermatologists from './pages/Dermatologist';
+import AdminDashboardPage from './pages/AdminDashboardPage';
+import DermatologistDashboardPage from './pages/DermatologistDashboardPage';
+import PatientsList from './components/DermatologistDashboard/PatientsList';
+import AppointmentSchedule from './components/DermatologistDashboard/AppointmentSchedule';
+import PatientSignup from './components/auth/PatientSignup';
+import DermatologistSignup from './components/auth/DermatologistSignup';
+
+// Admin Dashboard Components
+import DashboardOverview from './components/AdminDashboard/DashboardOverview';
+import DermatologistsList from './components/AdminDashboard/DermatologistsList';
+import PatientsAdminList from './components/AdminDashboard/PatientsList';
+import AppointmentsList from './components/AdminDashboard/AppointmentsList';
+import MessagesList from './components/AdminDashboard/MessagesList';
+import AnalyticsPage from './components/AdminDashboard/AnalyticsPage';
+import ReportsPage from './components/AdminDashboard/ReportsPage';
+import AdminToolsPage from './components/AdminDashboard/AdminToolsPage';
+import SettingsPage from './components/AdminDashboard/SettingsPage';
+// import SuccessPage from './components/auth/SuccessPage';
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/dermatologist" element={<Dermatologists />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/book-an-appointment" element={<BookAppointment />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/patient-signup" element={<PatientSignup />} />
+        <Route path="/dermatologist-signup" element={<DermatologistSignup />} />
+        {/* <Route path="/success" element={<SuccessPage />} /> */}
+
+        {/* Dermatologist Dashboard Routes */}
+        <Route path="/dermatologist/dashboard" element={<DermatologistDashboardPage />}>
+          <Route index element={<AppointmentSchedule />} />
+          <Route path="patients" element={<PatientsList />} />
+          <Route path="appointments" element={<AppointmentSchedule />} />
+        </Route>
+
+        {/* Admin Dashboard Routes */}
+        <Route path="/admin" element={<AdminDashboardPage />}>
+          <Route index element={<DashboardOverview />} />
+          <Route path="dermatologists" element={<DermatologistsList />} />
+          <Route path="patients" element={<PatientsAdminList />} />
+          <Route path="appointments" element={<AppointmentsList />} />
+          <Route path="messages" element={<MessagesList />} />
+          <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="reports" element={<ReportsPage />} />
+          <Route path="tools" element={<AdminToolsPage />} />
+          <Route path="settings" element={<SettingsPage />} />
+        </Route>
+
+        {/* Fallback/404 Route */}
+        <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </Router>
   );

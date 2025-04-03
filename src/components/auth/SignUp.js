@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
+import React from 'react';
+import './SignUp.css';
+import { useNavigate } from 'react-router-dom'; 
 const SignUp = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('patient');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:3000/auth/register', { email, password, role });
-      localStorage.setItem('token', response.data.access_token);
-      navigate('/dashboard'); // Redirect to dashboard after signup
-    } catch (error) {
-      console.error('Signup failed', error);
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      <select value={role} onChange={(e) => setRole(e.target.value)}>
-        <option value="patient">Patient</option>
-        <option value="dermatologist">Dermatologist</option>
-      </select>
-      <button type="submit">Sign Up</button>
-    </form>
+    <div className="derma-portal">
+      <div className="derma-portal__container">
+        <div className="derma-portal__header">
+          <h1 className="derma-portal__title"> Hello Skin Enthusiast!</h1>
+          <p className="derma-portal__subtitle">Are you here as a patient or dermatologist?</p>
+          <div className="derma-portal__emoji"></div>
+        </div>
+        
+        <div className="derma-portal__buttons">
+          <button 
+            className="derma-portal__btn derma-portal__btn--patient"
+            onClick={() => navigate('/patient-signup')}
+          >
+            <span className="derma-portal__btn-icon"></span>
+            <span>I'm a Patient</span>
+          </button>
+          
+          <button 
+            className="derma-portal__btn derma-portal__btn--dermatologist"
+            onClick={() => navigate('/dermatologist-signup')}
+          >
+            <span className="derma-portal__btn-icon"></span>
+            <span>I'm a Dermatologist</span>
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 

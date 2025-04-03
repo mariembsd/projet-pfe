@@ -10,6 +10,7 @@ import PatientHistory from "./PatientHistory";
 import Chat from "./Chat";
 
 const DermatologistDashboard = () => {
+  
   return (
     <div className="derm-dashboard">
       <DermatologistSidebar />

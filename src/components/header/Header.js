@@ -8,7 +8,7 @@ const Header = () => {
         <h1>Enjoy a Free Demo of DermaScan</h1>
         <p>Experience the future of dermatology with a personalized demo from one of our experts.</p>
         <div className="header-buttons">
-          <a href="/appointment" className="btn-primary">Start Now</a>
+          <a href="/appointment" className="btn-primary hero-btn">Start Now</a>
           <a href="/dermatologists" className="btn-secondary">Find a Dermatologist</a>
         </div>
       </div>

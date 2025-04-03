@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import NavigationBar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
 
 const dermatologist = {
   id: 1,
@@ -106,7 +108,7 @@ const Dermatologists = () => {
 
   return (
     <div className="dermatologists-page">
-      
+      <NavigationBar/>
       {/* Hero Section */}
       <section className="py-5 bg-light">
         <div className="container section-container">
@@ -200,7 +202,7 @@ const Dermatologists = () => {
         </div>
       </section>
 
-      
+      <Footer/>
     </div>
   );
 };

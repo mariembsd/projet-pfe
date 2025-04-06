@@ -66,6 +66,7 @@ export default App;*/
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import SendMessagePage from './pages/SendMessagePage';
 import About from './pages/About';
 import Login from './components/auth/Login';
 import SignUp from './components/auth/SignUp';
@@ -75,9 +76,6 @@ import Blog from './pages/Blog';
 import BookAppointment from './pages/Appointment';
 import Dermatologists from './pages/Dermatologist';
 import AdminDashboardPage from './pages/AdminDashboardPage';
-import DermatologistDashboardPage from './pages/DermatologistDashboardPage';
-import PatientsList from './components/DermatologistDashboard/PatientsList';
-import AppointmentSchedule from './components/DermatologistDashboard/AppointmentSchedule';
 import PatientSignup from './components/auth/PatientSignup';
 import DermatologistSignup from './components/auth/DermatologistSignup';
 
@@ -92,6 +90,19 @@ import ReportsPage from './components/AdminDashboard/ReportsPage';
 import AdminToolsPage from './components/AdminDashboard/AdminToolsPage';
 import SettingsPage from './components/AdminDashboard/SettingsPage';
 // import SuccessPage from './components/auth/SuccessPage';
+import DashboardPatient from './pages/DashboardPatient';
+import DermatologistDashboardPage from './pages/DermatologistDashboardPage';
+import Profile from './components/DermatologistDashboard/Profile';
+import Appointments from './components/DermatologistDashboard/Appointments';
+import ConsultedPatients from './components/DermatologistDashboard/ConsultedPatients';
+import Diagnostic from './components/DermatologistDashboard/DiagnosticForm';
+import Calendar from './components/PatientDashboard/Calendar';
+import Sidebar from './components/DermatologistDashboard/Sidebar';
+import Messagesd from './components/DermatologistDashboard/Messagesd';
+import AppointmentConfirmation from './components/PatientDashboard/AppointmentConfirmation';
+import AppointmentInfo from './components/PatientDashboard/AppointmentInfo';
+
+
 
 const App = () => {
   return (
@@ -107,16 +118,21 @@ const App = () => {
         <Route path="/book-an-appointment" element={<BookAppointment />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        
         <Route path="/patient-signup" element={<PatientSignup />} />
         <Route path="/dermatologist-signup" element={<DermatologistSignup />} />
         {/* <Route path="/success" element={<SuccessPage />} /> */}
 
-        {/* Dermatologist Dashboard Routes */}
         <Route path="/dermatologist/dashboard" element={<DermatologistDashboardPage />}>
-          <Route index element={<AppointmentSchedule />} />
-          <Route path="patients" element={<PatientsList />} />
-          <Route path="appointments" element={<AppointmentSchedule />} />
-        </Route>
+  {/* Nested routes under Dermatologist Dashboard */}
+  <Route index element={<Profile />} />
+  <Route path="profile" element={<Profile />} />
+  <Route path="appointments" element={<Appointments />} />
+  <Route path="consulted-patients" element={<ConsultedPatients />} />
+  <Route path="diagnostic" element={<Diagnostic />} />
+  <Route path="messagesd" element={<Messagesd />} />
+</Route>
+
 
         {/* Admin Dashboard Routes */}
         <Route path="/admin" element={<AdminDashboardPage />}>
@@ -130,6 +146,16 @@ const App = () => {
           <Route path="tools" element={<AdminToolsPage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
+        <Route path="/patient/dashboard" element={<DashboardPatient />} />
+        <Route path="/send-message" element={<SendMessagePage />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/appointment-confirmation" element={<AppointmentConfirmation />} />
+        <Route path="/appointment-info" element={<AppointmentInfo />} />
+
+
+        
+
+
 
         {/* Fallback/404 Route */}
         <Route path="*" element={<div>404 Not Found</div>} />

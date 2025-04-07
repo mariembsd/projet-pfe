@@ -97,6 +97,7 @@ import Appointments from './components/DermatologistDashboard/Appointments';
 import ConsultedPatients from './components/DermatologistDashboard/ConsultedPatients';
 import Diagnostic from './components/DermatologistDashboard/DiagnosticForm';
 import Calendar from './components/PatientDashboard/Calendar';
+import DermatologistList from './components/PatientDashboard/DermatologistList';
 import Sidebar from './components/DermatologistDashboard/Sidebar';
 import Messagesd from './components/DermatologistDashboard/Messagesd';
 import AppointmentConfirmation from './components/PatientDashboard/AppointmentConfirmation';
@@ -146,12 +147,20 @@ const App = () => {
           <Route path="tools" element={<AdminToolsPage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
-        <Route path="/patient/dashboard" element={<DashboardPatient />} />
+        {/* <Route path="/patient/dashboard" element={<DashboardPatient />} />
         <Route path="/send-message" element={<SendMessagePage />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/appointment-confirmation" element={<AppointmentConfirmation />} />
-        <Route path="/appointment-info" element={<AppointmentInfo />} />
+        <Route path="/appointment-info" element={<AppointmentInfo />} /> */}
 
+        <Route path="/patient/dashboard" element={<DashboardPatient />}>
+          <Route index element={<Profile />} />  // Default view
+          <Route path="profile" element={<Profile />} />
+          <Route path="dermatologists" element={<DermatologistList />} />
+          <Route path="appointments" element={<Appointments />} />
+          <Route path="calendar" element={<Calendar />} />
+        </Route>
+      
 
         
 

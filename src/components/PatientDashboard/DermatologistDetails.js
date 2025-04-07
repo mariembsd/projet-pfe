@@ -6,11 +6,11 @@ const DermatologistDetails = () => {
   const navigate = useNavigate();
 
   const handleBookAppointment = () => {
-    navigate('/calendar');
+    navigate('/patient/dashboard/calendar');
   };
 
   const handleSendMessage = () => {
-    navigate('/calendar', {
+    navigate('/patient/dashboard/calendar', {
       state: {
         doctor: {
           id: 1,

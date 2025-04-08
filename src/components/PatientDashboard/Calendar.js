@@ -191,7 +191,7 @@ const AppointmentCalendar = () => {
         </Modal.Footer>
       </Modal>
     </>
-  );
+  ); 
 
   return (
     <div className="d-flex">

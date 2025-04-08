@@ -7,22 +7,39 @@ const DermatologistSignup = () => {
     name: '',
     email: '',
     password: '',
-    speciality: '',
     experience: '',
-    availability: '',
+    availabilityType: '',
     phone: '',
+    address: '',
     diploma: null,
+    cinCard: null,
+    availableDays: [],
     status: 'pending'
   });
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: files ? files[0] : value
-    }));
+    const { name, value, files, type, checked } = e.target;
+
+    if (name === 'cinCard' || name === 'diploma') {
+      setFormData(prev => ({
+        ...prev,
+        [name]: files[0]
+      }));
+    } else if (name === 'availableDays') {
+      setFormData(prev => ({
+        ...prev,
+        availableDays: checked
+          ? [...prev.availableDays, value]
+          : prev.availableDays.filter(day => day !== value)
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -38,7 +55,7 @@ const DermatologistSignup = () => {
         <h2>Dermatologist Registration</h2>
         <p>Please provide your professional details</p>
       </div>
-      
+
       <form onSubmit={handleSubmit} className="derma-form">
         <div className="form-group">
           <label>Full Name</label>
@@ -50,7 +67,7 @@ const DermatologistSignup = () => {
             required 
           />
         </div>
-        
+
         <div className="form-group">
           <label>Email</label>
           <input 
@@ -61,7 +78,7 @@ const DermatologistSignup = () => {
             required 
           />
         </div>
-        
+
         <div className="form-group">
           <label>Password</label>
           <input 
@@ -72,19 +89,7 @@ const DermatologistSignup = () => {
             required 
           />
         </div>
-        
-        <div className="form-group">
-          <label>Speciality</label>
-          <input 
-            type="text" 
-            name="speciality" 
-            value={formData.speciality} 
-            onChange={handleChange} 
-            required 
-            placeholder="e.g. Pediatric Dermatology, Cosmetic Dermatology"
-          />
-        </div>
-        
+
         <div className="form-group">
           <label>Years of Experience</label>
           <input 
@@ -96,12 +101,12 @@ const DermatologistSignup = () => {
             min="0"
           />
         </div>
-        
+
         <div className="form-group">
-          <label>Availability</label>
+          <label>Availability Type</label>
           <select 
-            name="availability" 
-            value={formData.availability} 
+            name="availabilityType" 
+            value={formData.availabilityType} 
             onChange={handleChange} 
             required
           >
@@ -111,7 +116,7 @@ const DermatologistSignup = () => {
             <option value="consultation-basis">Consultation basis</option>
           </select>
         </div>
-        
+
         <div className="form-group">
           <label>Phone Number</label>
           <input 
@@ -122,7 +127,19 @@ const DermatologistSignup = () => {
             required 
           />
         </div>
-        
+
+        <div className="form-group">
+          <label>Address</label>
+          <input 
+            type="text" 
+            name="address" 
+            value={formData.address} 
+            onChange={handleChange} 
+            required 
+            placeholder="Enter your clinic or practice location"
+          />
+        </div>
+
         <div className="form-group">
           <label>Diploma/Certificate</label>
           <input 
@@ -134,7 +151,37 @@ const DermatologistSignup = () => {
           />
           <small>Upload your medical license or diploma</small>
         </div>
-        
+
+        <div className="form-group">
+          <label>CIN Card Photo</label>
+          <input 
+            type="file" 
+            name="cinCard" 
+            onChange={handleChange} 
+            required 
+            accept=".jpg,.jpeg,.png"
+          />
+          <small>Upload a photo of your CIN card</small>
+        </div>
+
+        <div className="form-group">
+          <label>Available Days for Consultation</label>
+          <div className="checkbox-group">
+            {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'  ].map(day => (
+              <label key={day} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  name="availableDays"
+                  value={day}
+                  checked={formData.availableDays.includes(day)}
+                  onChange={handleChange}
+                />
+                {day}
+              </label>
+            ))}
+          </div>
+        </div>
+
         <div className="form-actions">
           <button type="button" className="secondary-btn" onClick={() => navigate('/')}>
             Back

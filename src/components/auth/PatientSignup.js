@@ -9,6 +9,7 @@ const PatientSignup = () => {
     password: '',
     birthdate: '',
     gender: '',
+    phone: '',
     skinType: '',
     medicalConditions: '',
     profileImage: null
@@ -110,7 +111,16 @@ const PatientSignup = () => {
           />
           {errors.birthdate && <span className="error-message">{errors.birthdate}</span>}
         </div>
-        
+        <div className="form-group">
+          <label>Phone Number</label>
+          <input 
+            type="tel" 
+            name="phone" 
+            value={formData.phone} 
+            onChange={handleChange} 
+            required 
+          />
+        </div>
         <div className="form-group">
           <label>Gender</label>
           <select 
@@ -122,8 +132,6 @@ const PatientSignup = () => {
             <option value="">Select</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
-            <option value="other">Other</option>
-            <option value="prefer-not-to-say">Prefer not to say</option>
           </select>
           {errors.gender && <span className="error-message">{errors.gender}</span>}
         </div>

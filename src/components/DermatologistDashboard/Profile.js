@@ -13,7 +13,7 @@ const ProfilePage = () => {
     clinic: 'Downtown Skin Care Clinic',
     location: '123 Skin St, Springfield, USA',
     availableHours: 'Mon-Fri: 9 AM - 5 PM',
-  };
+  }; 
 
   return (
     <Card className="p-4">

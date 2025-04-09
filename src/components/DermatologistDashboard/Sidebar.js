@@ -23,8 +23,8 @@ const Sidebar = () => {
             <span className="notif-count">!</span>
           </span>
         )}
-      </h5>
-
+      </h5> 
+ 
       <Nav className="flex-column">
         <Nav.Link as={Link} to="profile">👤 Profile</Nav.Link>
 

@@ -13,7 +13,7 @@ const DiagnosePage = () => {
 
   const addMedicationField = () => {
     setMedications([...medications, { name: '', dosage: '', duration: '', frequency: '' }]);
-  };
+  }; 
 
   const handleSave = () => {
     // Handle save logic

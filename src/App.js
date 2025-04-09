@@ -66,6 +66,7 @@ export default App;*/
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import SendMessagePage from './pages/SendMessagePage';
 import About from './pages/About';
 import Login from './components/auth/Login';

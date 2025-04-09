@@ -357,5 +357,39 @@ body {
     border-radius: 6px;
     padding-left: 5px;
   }
-  
-  
+  /* Wrapper remains the same */
+.notif-bell-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Smaller bell icons */
+.notif-icon, .notif-bell {
+  font-size: 0.8rem; /* reduced from 1.2rem */
+  color: #ffc107;
+  margin-left: 6px;
+}
+
+/* Adjust badge size slightly to match */
+.notif-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background-color: #ffc107;
+  color: black;
+  font-size: 0.4rem;
+  font-weight: bold;
+  padding: 1px 4px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.sidebar-title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 1.9; /* increase vertical spacing between lines */
+}

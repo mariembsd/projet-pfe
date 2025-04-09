@@ -3,7 +3,7 @@ import { Card, Form, Button } from 'react-bootstrap';
 import './DermCss.css';
 
 const DiagnosePage = () => {
-  const [medications, setMedications] = useState([{ name: '', dosage: '', duration: '' }]);
+  const [medications, setMedications] = useState([{ name: '', dosage: '', duration: '', frequency: '' }]);
 
   const handleMedicationChange = (index, field, value) => {
     const updated = [...medications];
@@ -12,7 +12,7 @@ const DiagnosePage = () => {
   };
 
   const addMedicationField = () => {
-    setMedications([...medications, { name: '', dosage: '', duration: '' }]);
+    setMedications([...medications, { name: '', dosage: '', duration: '', frequency: '' }]);
   };
 
   const handleSave = () => {
@@ -49,9 +49,18 @@ const DiagnosePage = () => {
               <Form.Label>Dosage</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="e.g., Twice a day"
+                placeholder="e.g., 200mg"
                 value={med.dosage}
                 onChange={(e) => handleMedicationChange(index, 'dosage', e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2 col-md-3">
+              <Form.Label>Frequency</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="e.g., 3 times a day"
+                value={med.frequency}
+                onChange={(e) => handleMedicationChange(index, 'frequency', e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-2 col-md-3">
@@ -63,6 +72,7 @@ const DiagnosePage = () => {
                 onChange={(e) => handleMedicationChange(index, 'duration', e.target.value)}
               />
             </Form.Group>
+           
           </div>
         ))}
         <div className="col-md-10 d-inline-flex gap-3">

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NavigationBar from '../components/navbar/Navbar';
 import Footer from '../components/footer/Footer';
+import './Contact.css';
+import contact from '../assets/images/skin.jpg'; // Imported image
 
 const Contact = () => {
   useEffect(() => {
@@ -34,25 +36,24 @@ const Contact = () => {
       message: ''
     });
 
-    setTimeout(() => {
-      setFormSubmitted(false);
-    }, 5000);
+    setTimeout(() => setFormSubmitted(false), 5000);
   };
 
   return (
     <div className="contact-page">
-     <NavigationBar/>
-      
+      <NavigationBar />
+
       {/* Hero Section */}
-      <section className="py-5 bg-light">
+      <section className="contact-hero">
         <div className="container section-container">
           <div className="row align-items-center">
             <div className="col-lg-6 fade-in">
-              <h1 className="display-4 fw-bold mb-4">Contact Us</h1>
-              <p className="lead mb-4">We're here to answer your questions and provide the support you need.</p>
+              <h1 className="hero-title">Contact Us</h1>
+              <p className="hero-subtitle">We’re here to help! Reach out with any questions or concerns.</p>
             </div>
             <div className="col-lg-6 slide-in">
-              <img src="https://placehold.co/600x400/e0f2fe/333333.png?text=Contact+Us" alt="Contact Us" className="img-fluid rounded shadow" />
+              {/* Replacing image src with the imported contact image */}
+              <img src={contact} alt="Contact" className="img-fluid rounded shadow" />
             </div>
           </div>
         </div>
@@ -61,50 +62,38 @@ const Contact = () => {
       {/* Contact Information */}
       <section className="py-5">
         <div className="container section-container">
-          <div className="row g-4">
-            <div className="col-md-4">
-              <div className="card h-100 border-0 shadow-sm text-center hover-scale">
-                <div className="card-body p-4">
-                  <div className="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
-                    <i className="bi bi-geo-alt fs-2 text-primary"></i>
+          <div className="row g-4 text-center">
+            {[{
+              icon: "bi-geo-alt",
+              title: "Visit Us",
+              content: "123 Derma Street, Medical District, New York, NY 10001"
+            },
+            {
+              icon: "bi-telephone",
+              title: "Call Us",
+              content: "Customer Support:\n(555) 123-4567\nMon-Fri: 8AM-6PM EST"
+            },
+            {
+              icon: "bi-envelope",
+              title: "Email Us",
+              content: "info@dermaconnect.com\nsupport@dermaconnect.com"
+            }].map(({ icon, title, content }, index) => (
+              <div key={index} className="col-md-4">
+                <div className="card contact-card h-100 shadow-sm">
+                  <div className="card-body p-4">
+                    <div className="contact-icon mb-3"><i className={`bi ${icon}`}></i></div>
+                    <h4>{title}</h4>
+                    <p className="mb-0 white-space-pre-line">{content}</p>
                   </div>
-                  <h4>Visit Us</h4>
-                  <p className="mb-0">123 Derma Street<br />Medical District<br />New York, NY 10001</p>
                 </div>
               </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card h-100 border-0 shadow-sm text-center hover-scale">
-                <div className="card-body p-4">
-                  <div className="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
-                    <i className="bi bi-telephone fs-2 text-primary"></i>
-                  </div>
-                  <h4>Call Us</h4>
-                  <p className="mb-2">Customer Support:</p>
-                  <p className="text-primary fw-bold mb-2">(555) 123-4567</p>
-                  <p className="mb-0">Mon-Fri: 8AM-6PM EST</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card h-100 border-0 shadow-sm text-center hover-scale">
-                <div className="card-body p-4">
-                  <div className="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
-                    <i className="bi bi-envelope fs-2 text-primary"></i>
-                  </div>
-                  <h4>Email Us</h4>
-                  <p className="mb-2">General Inquiries:</p>
-                  <p className="text-primary fw-bold mb-2">info@dermaconnect.com</p>
-                  <p className="mb-0">Support: support@dermaconnect.com</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Contact Form */}
-      <section className="py-5 bg-light">
+      <section className="contact-form-section">
         <div className="container section-container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
@@ -119,46 +108,33 @@ const Contact = () => {
                   ) : (
                     <form onSubmit={handleSubmit}>
                       <div className="row g-3">
-                        <div className="col-md-6">
-                          <label htmlFor="name" className="form-label">Full Name</label>
-                          <input 
-                            type="text" 
-                            className="form-control" 
-                            id="name" 
-                            name="name" 
-                            value={formData.name}
-                            onChange={handleChange}
-                            required 
-                          />
-                        </div>
-                        <div className="col-md-6">
-                          <label htmlFor="email" className="form-label">Email Address</label>
-                          <input 
-                            type="email" 
-                            className="form-control" 
-                            id="email" 
-                            name="email" 
-                            value={formData.email}
-                            onChange={handleChange}
-                            required 
-                          />
-                        </div>
-                        <div className="col-md-6">
-                          <label htmlFor="phone" className="form-label">Phone Number</label>
-                          <input 
-                            type="tel" 
-                            className="form-control" 
-                            id="phone" 
-                            name="phone" 
-                            value={formData.phone}
-                            onChange={handleChange}
-                          />
-                        </div>
+                        {[{
+                          id: "name", label: "Full Name", type: "text"
+                        },
+                        {
+                          id: "email", label: "Email Address", type: "email"
+                        },
+                        {
+                          id: "phone", label: "Phone Number", type: "tel"
+                        }].map(({ id, label, type }, index) => (
+                          <div className="col-md-6" key={index}>
+                            <label htmlFor={id} className="form-label">{label}</label>
+                            <input
+                              type={type}
+                              className="form-control"
+                              id={id}
+                              name={id}
+                              value={formData[id]}
+                              onChange={handleChange}
+                              required={id !== "phone"}
+                            />
+                          </div>
+                        ))}
                         <div className="col-md-6">
                           <label htmlFor="subject" className="form-label">Subject</label>
-                          <select 
-                            className="form-select" 
-                            id="subject" 
+                          <select
+                            className="form-select"
+                            id="subject"
                             name="subject"
                             value={formData.subject}
                             onChange={handleChange}
@@ -174,10 +150,10 @@ const Contact = () => {
                         </div>
                         <div className="col-12">
                           <label htmlFor="message" className="form-label">Message</label>
-                          <textarea 
-                            className="form-control" 
-                            id="message" 
-                            name="message" 
+                          <textarea
+                            className="form-control"
+                            id="message"
+                            name="message"
                             rows="5"
                             value={formData.message}
                             onChange={handleChange}
@@ -197,7 +173,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 };

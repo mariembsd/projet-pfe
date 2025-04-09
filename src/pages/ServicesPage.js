@@ -1,386 +1,246 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { ArrowRight, Heart, Calendar, MessageSquare, Image, User, TestTube, Droplet, ScanFace } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import './ServicesPage.css';
-import NavigationBar from '../components/navbar/Navbar';
-import Footer from '../components/footer/Footer';
 
-const Index = () => {
+// Import service images
+import consultationImg from '../assets/images/moles.jpg';
+import analysisImg from '../assets/images/moles.jpg';
+import treatmentImg from '../assets/images/moles.jpg';
+import appointmentImg from '../assets/images/moles.jpg';
+import historyImg from '../assets/images/moles.jpg';
+import recommendationsImg from '../assets/images/moles.jpg';
+
+const AnimatedCard = ({ children, delay = 0 }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const ServicesPage = () => {
+  const services = [
+    {
+      title: "Online Dermatologist Consultation",
+      description: "Connect with board-certified dermatologists through secure, HIPAA-compliant video calls or messaging. Get expert advice without leaving your home with our high-quality telemedicine platform.",
+      icon: "fas fa-video",
+      image: consultationImg,
+      features: ["HD video calls", "Secure messaging", "Prescription delivery", "Follow-up reminders"]
+    },
+    {
+      title: "Skin Condition Analysis",
+      description: "Submit high-resolution photos of your skin concerns and receive professional analysis within 24 hours. Our dermatologists use advanced imaging tools to provide accurate assessments.",
+      icon: "fas fa-camera-retro",
+      image: analysisImg,
+      features: ["Photo analysis", "Symptom tracking", "Priority cases flagged", "Multi-angle uploads"]
+    },
+    {
+      title: "Personalized Treatment Plans",
+      description: "Receive customized treatment protocols tailored to your specific skin type, conditions, and lifestyle. Our plans include medication, lifestyle recommendations, and progress tracking.",
+      icon: "fas fa-prescription-bottle-alt",
+      image: treatmentImg,
+      features: ["Custom routines", "Progress tracking", "Medication management", "Lifestyle advice"]
+    },
+    {
+      title: "Smart Appointment Scheduling",
+      description: "Our intelligent scheduling system finds the perfect time for your consultation based on your preferences and the dermatologist's availability, with automatic reminders.",
+      icon: "fas fa-calendar-alt",
+      image: appointmentImg,
+      features: ["Real-time availability", "Auto-reminders", "Rescheduling", "Waitlist options"]
+    },
+    {
+      title: "Comprehensive Medical History",
+      description: "Your complete dermatological history securely stored and easily accessible. Track progress over time with visual timelines and treatment outcome measurements.",
+      icon: "fas fa-clipboard-list",
+      image: historyImg,
+      features: ["Secure storage", "Visual timelines", "Treatment outcomes", "Exportable records"]
+    },
+    {
+      title: "AI-Powered Recommendations",
+      description: "Our smart system suggests products and routines based on your skin profile, with options filtered by your budget, preferences, and specific skin concerns.",
+      icon: "fas fa-spa",
+      image: recommendationsImg,
+      features: ["Product matching", "Budget filters", "Ingredient analysis", "Routine builder"]
+    }
+  ];
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.8 } }
+  };
+
   return (
     <div className="services-page">
-      <NavigationBar/>
       {/* Hero Section */}
-      <header className="hero-section py-5">
+      <section className="services-hero">
+        <Container>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+          >
+            <h1 className="hero-title">Advanced Dermatological Care</h1>
+            <p className="hero-subtitle">Cutting-edge skin health solutions powered by technology and expert care</p>
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* Services Grid */}
+      <Container className="services-container">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          className="text-center mb-5"
+        >
+          <h2 className="section-title">Our Comprehensive Services</h2>
+          <p className="section-subtitle">Every aspect of your skin health journey covered</p>
+        </motion.div>
+        
+        <Row xs={1} md={2} lg={3} className="g-4">
+          {services.map((service, index) => (
+            <Col key={index}>
+              <AnimatedCard delay={index * 0.1}>
+                <Card className="service-card h-100">
+                  <div className="service-image-container">
+                    <img src={service.image} alt={service.title} className="service-image" />
+                    <div className="service-icon-circle">
+                      <i className={`${service.icon} fa-lg`}></i>
+                    </div>
+                  </div>
+                  <Card.Body>
+                    <Card.Title className="service-card-title">{service.title}</Card.Title>
+                    <Card.Text className="service-card-text">
+                      {service.description}
+                    </Card.Text>
+                    <div className="service-features">
+                      <ul>
+                        {service.features.map((feature, i) => (
+                          <li key={i}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Card.Body>
+                  <Card.Footer className="service-footer">
+                    <Button variant="primary" className="service-button">
+                      Learn More <i className="fas fa-chevron-right ms-2"></i>
+                    </Button>
+                  </Card.Footer>
+                </Card>
+              </AnimatedCard>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+
+      {/* Value Proposition Section */}
+      <section className="value-proposition">
         <Container>
           <Row className="align-items-center">
-            <Col md={6} className="mb-4 mb-md-0 fade-in">
-              <h1 className="display-4 fw-bold mb-3">DermaScan Connect</h1>
-              <p className="lead mb-4">Modern dermatology care at your fingertips. Connect with dermatologists, track your skin health, and receive personalized recommendations.</p>
-              <Button variant="primary" size="lg" className="rounded-pill me-3">Get Started</Button>
-              <Button variant="outline-secondary" size="lg" className="rounded-pill">Learn More</Button>
-            </Col>
-            <Col md={6} className="slide-in-right">
-              <div className="hero-image-container">
-                <img 
-                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=800&q=80" 
-                  alt="Dermatology App" 
-                  className="img-fluid rounded-lg shadow-lg"
-                />
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </header>
-
-      {/* Services Section */}
-      <section className="services-section py-5 bg-light">
-        <Container>
-          <div className="text-center mb-5 fade-in">
-            <h2 className="display-5 fw-bold">Our Services</h2>
-            <p className="lead">Comprehensive dermatology care through technology</p>
-          </div>
-          
-          <Row className="g-4">
-            <Col md={4} className="service-card-anim">
-              <Card className="service-card h-100 border-0 shadow-sm">
-                <div className="icon-container">
-                  <User size={40} />
+            <Col lg={6} className="mb-4 mb-lg-0">
+              <motion.div
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="value-title">Why DermaScan Stands Out</h2>
+                <div className="value-item">
+                  <div className="value-icon">
+                    <i className="fas fa-shield-alt"></i>
+                  </div>
+                  <div>
+                    <h3>Military-Grade Security</h3>
+                    <p>Your health data is protected with end-to-end encryption and HIPAA compliance.</p>
+                  </div>
                 </div>
-                <Card.Body className="text-center">
-                  <Card.Title className="fw-bold">Online Consultations</Card.Title>
-                  <Card.Text>
-                    Connect with certified dermatologists from the comfort of your home for expert skin care advice.
-                  </Card.Text>
-                  <Button variant="link" className="text-decoration-none">
-                    Learn more <ArrowRight size={16} className="ms-1" />
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            
-            <Col md={4} className="service-card-anim delay-1">
-              <Card className="service-card h-100 border-0 shadow-sm">
-                <div className="icon-container">
-                  <Image size={40} />
+                <div className="value-item">
+                  <div className="value-icon">
+                    <i className="fas fa-bolt"></i>
+                  </div>
+                  <div>
+                    <h3>Rapid Response</h3>
+                    <p>90% of cases receive initial feedback within 6 hours, emergency cases within 1 hour.</p>
+                  </div>
                 </div>
-                <Card.Body className="text-center">
-                  <Card.Title className="fw-bold">Skin Analysis</Card.Title>
-                  <Card.Text>
-                    Submit images of your skin concerns for professional evaluation and personalized treatment options.
-                  </Card.Text>
-                  <Button variant="link" className="text-decoration-none">
-                    Learn more <ArrowRight size={16} className="ms-1" />
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            
-            <Col md={4} className="service-card-anim delay-2">
-              <Card className="service-card h-100 border-0 shadow-sm">
-                <div className="icon-container">
-                  <Calendar size={40} />
+                <div className="value-item">
+                  <div className="value-icon">
+                    <i className="fas fa-user-md"></i>
+                  </div>
+                  <div>
+                    <h3>Top 1% Specialists</h3>
+                    <p>Our dermatologists are fellowship-trained and average 15+ years of experience.</p>
+                  </div>
                 </div>
-                <Card.Body className="text-center">
-                  <Card.Title className="fw-bold">Appointment Scheduling</Card.Title>
-                  <Card.Text>
-                    Easily book, reschedule, or cancel appointments with your preferred dermatologist.
-                  </Card.Text>
-                  <Button variant="link" className="text-decoration-none">
-                    Learn more <ArrowRight size={16} className="ms-1" />
-                  </Button>
-                </Card.Body>
-              </Card>
+              </motion.div>
+            </Col>
+            <Col lg={6}>
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <div className="value-image-container">
+                  <img src={recommendationsImg} alt="Dermatologist using DermaScan" className="value-image" />
+                  <div className="stats-overlay">
+                    <div className="stat-item">
+                      <div className="stat-number">98%</div>
+                      <div className="stat-label">Accuracy Rate</div>
+                    </div>
+                    <div className="stat-item">
+                      <div className="stat-number">24/7</div>
+                      <div className="stat-label">Availability</div>
+                    </div>
+                    <div className="stat-item">
+                      <div className="stat-number">10k+</div>
+                      <div className="stat-label">Patients Served</div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </Col>
           </Row>
         </Container>
       </section>
 
-      {/* Treatments Photo Gallery */}
-      <section className="treatments-section py-5">
+      {/* CTA Section */}
+      <section className="cta-section">
         <Container>
-          <div className="text-center mb-5 fade-in">
-            <h2 className="display-5 fw-bold">Explore Our Treatments</h2>
-            <p className="lead">Effective solutions for a variety of skin conditions</p>
-          </div>
-          
-          <Row className="g-4">
-            <Col md={4} className="photo-card-anim">
-              <Card className="treatment-card h-100 border-0 shadow-sm">
-                <Card.Img variant="top" src="https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&w=800&q=80" className="treatment-img" />
-                <Card.Body>
-                  <div className="treatment-icon">
-                    <ScanFace size={28} />
-                  </div>
-                  <Card.Title className="fw-bold">Acne & Pimple Treatment</Card.Title>
-                  <Card.Text>
-                    Advanced solutions for clear, healthy skin using the latest dermatological techniques.
-                  </Card.Text>
-                  <Button variant="outline-primary" className="rounded-pill">Learn More</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            
-            <Col md={4} className="photo-card-anim delay-1">
-              <Card className="treatment-card h-100 border-0 shadow-sm">
-                <Card.Img variant="top" src="https://images.unsplash.com/photo-1596778402767-c7feb18fde4b?auto=format&fit=crop&w=800&q=80" className="treatment-img" />
-                <Card.Body>
-                  <div className="treatment-icon">
-                    <Droplet size={28} />
-                  </div>
-                  <Card.Title className="fw-bold">Hair Transplant</Card.Title>
-                  <Card.Text>
-                    Restore your natural hairline with our minimally invasive hair transplantation techniques.
-                  </Card.Text>
-                  <Button variant="outline-primary" className="rounded-pill">Learn More</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} className="photo-card-anim delay-2">
-              <Card className="treatment-card h-100 border-0 shadow-sm">
-                <Card.Img variant="top" src="https://images.unsplash.com/photo-1600428877878-1a0ff561d8b6?auto=format&fit=crop&w=800&q=80" className="treatment-img" />
-                <Card.Body>
-                  <div className="treatment-icon">
-                    <TestTube size={28} />
-                  </div>
-                  <Card.Title className="fw-bold">Skin Rejuvenation</Card.Title>
-                  <Card.Text>
-                    Turn back the clock with our comprehensive skin rejuvenation and anti-aging treatments.
-                  </Card.Text>
-                  <Button variant="outline-primary" className="rounded-pill">Learn More</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} className="photo-card-anim delay-2">
-              <Card className="treatment-card h-100 border-0 shadow-sm">
-                <Card.Img variant="top" src="https://images.unsplash.com/photo-1600428877878-1a0ff561d8b6?auto=format&fit=crop&w=800&q=80" className="treatment-img" />
-                <Card.Body>
-                  <div className="treatment-icon">
-                    <TestTube size={28} />
-                  </div>
-                  <Card.Title className="fw-bold">Skin Rejuvenation</Card.Title>
-                  <Card.Text>
-                    Turn back the clock with our comprehensive skin rejuvenation and anti-aging treatments.
-                  </Card.Text>
-                  <Button variant="outline-primary" className="rounded-pill">Learn More</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} className="photo-card-anim delay-2">
-              <Card className="treatment-card h-100 border-0 shadow-sm">
-                <Card.Img variant="top" src="https://images.unsplash.com/photo-1600428877878-1a0ff561d8b6?auto=format&fit=crop&w=800&q=80" className="treatment-img" />
-                <Card.Body>
-                  <div className="treatment-icon">
-                    <TestTube size={28} />
-                  </div>
-                  <Card.Title className="fw-bold">Skin Rejuvenation</Card.Title>
-                  <Card.Text>
-                    Turn back the clock with our comprehensive skin rejuvenation and anti-aging treatments.
-                  </Card.Text>
-                  <Button variant="outline-primary" className="rounded-pill">Learn More</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} className="photo-card-anim delay-2">
-              <Card className="treatment-card h-100 border-0 shadow-sm">
-                <Card.Img variant="top" src="https://images.unsplash.com/photo-1600428877878-1a0ff561d8b6?auto=format&fit=crop&w=800&q=80" className="treatment-img" />
-                <Card.Body>
-                  <div className="treatment-icon">
-                    <TestTube size={28} />
-                  </div>
-                  <Card.Title className="fw-bold">Skin Rejuvenation</Card.Title>
-                  <Card.Text>
-                    Turn back the clock with our comprehensive skin rejuvenation and anti-aging treatments.
-                  </Card.Text>
-                  <Button variant="outline-primary" className="rounded-pill">Learn More</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} className="photo-card-anim delay-2">
-              <Card className="treatment-card h-100 border-0 shadow-sm">
-                <Card.Img variant="top" src="https://images.unsplash.com/photo-1600428877878-1a0ff561d8b6?auto=format&fit=crop&w=800&q=80" className="treatment-img" />
-                <Card.Body>
-                  <div className="treatment-icon">
-                    <TestTube size={28} />
-                  </div>
-                  <Card.Title className="fw-bold">Skin Rejuvenation</Card.Title>
-                  <Card.Text>
-                    Turn back the clock with our comprehensive skin rejuvenation and anti-aging treatments.
-                  </Card.Text>
-                  <Button variant="outline-primary" className="rounded-pill">Learn More</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} className="photo-card-anim delay-2">
-              <Card className="treatment-card h-100 border-0 shadow-sm">
-                <Card.Img variant="top" src="https://images.unsplash.com/photo-1600428877878-1a0ff561d8b6?auto=format&fit=crop&w=800&q=80" className="treatment-img" />
-                <Card.Body>
-                  <div className="treatment-icon">
-                    <TestTube size={28} />
-                  </div>
-                  <Card.Title className="fw-bold">Skin Rejuvenation</Card.Title>
-                  <Card.Text>
-                    Turn back the clock with our comprehensive skin rejuvenation and anti-aging treatments.
-                  </Card.Text>
-                  <Button variant="outline-primary" className="rounded-pill">Learn More</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} className="photo-card-anim delay-2">
-              <Card className="treatment-card h-100 border-0 shadow-sm">
-                <Card.Img variant="top" src="https://images.unsplash.com/photo-1600428877878-1a0ff561d8b6?auto=format&fit=crop&w=800&q=80" className="treatment-img" />
-                <Card.Body>
-                  <div className="treatment-icon">
-                    <TestTube size={28} />
-                  </div>
-                  <Card.Title className="fw-bold">Skin Rejuvenation</Card.Title>
-                  <Card.Text>
-                    Turn back the clock with our comprehensive skin rejuvenation and anti-aging treatments.
-                  </Card.Text>
-                  <Button variant="outline-primary" className="rounded-pill">Learn More</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="cta-container"
+          >
+            <h2 className="cta-title">Ready for Healthier Skin?</h2>
+            <p className="cta-text">Join thousands of patients experiencing better dermatological care</p>
+            <div className="cta-buttons">
+              <Button variant="primary" size="lg" className="me-3">
+                Book a Consultation
+              </Button>
+              <Button variant="outline-light" size="lg">
+                Learn How It Works
+              </Button>
+            </div>
+          </motion.div>
         </Container>
       </section>
-
-      {/* Features Section */}
-      <section className="features-section py-5">
-        <Container>
-          <Row className="align-items-center mb-5">
-            <Col md={6} className="fade-in">
-              <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" 
-                alt="Patient Monitoring" 
-                className="img-fluid rounded-lg shadow-lg"
-              />
-            </Col>
-            <Col md={6} className="slide-in-right">
-              <h2 className="fw-bold mb-3">Follow-up and Monitoring</h2>
-              <p className="mb-4">Keep track of your skin's progress over time with our advanced monitoring tools. Receive regular follow-ups from your dermatologist.</p>
-              <ul className="feature-list">
-                <li>
-                  <Heart className="me-2 text-primary" size={20} />
-                  <span>Track treatment progress</span>
-                </li>
-                <li>
-                  <MessageSquare className="me-2 text-primary" size={20} />
-                  <span>Direct messaging with your dermatologist</span>
-                </li>
-                <li>
-                  <Calendar className="me-2 text-primary" size={20} />
-                  <span>Automated treatment reminders</span>
-                </li>
-              </ul>
-              <Button variant="outline-primary" className="rounded-pill mt-3">Explore Features</Button>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="testimonials-section py-5 bg-light">
-        <Container>
-          <div className="text-center mb-5 fade-in">
-            <h2 className="display-5 fw-bold">What Our Users Say</h2>
-            <p className="lead">Join thousands of satisfied patients and dermatologists</p>
-          </div>
-          
-          <Row className="g-4">
-            <Col md={6} lg={4} className="testimonial-card-anim">
-              <Card className="testimonial-card h-100 border-0 shadow-sm">
-                <Card.Body>
-                  <div className="d-flex mb-3">
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                  </div>
-                  <Card.Text className="mb-3">
-                    "DermaScan made it so easy for me to consult with a dermatologist without leaving my home. The treatment plan I received was personalized and effective."
-                  </Card.Text>
-                  <div className="d-flex align-items-center">
-                    <div className="testimonial-avatar me-3">
-                      LS
-                    </div>
-                    <div>
-                      <h6 className="mb-0 fw-bold">Laura S.</h6>
-                      <small className="text-muted">Patient</small>
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-            
-            <Col md={6} lg={4} className="testimonial-card-anim delay-1">
-              <Card className="testimonial-card h-100 border-0 shadow-sm">
-                <Card.Body>
-                  <div className="d-flex mb-3">
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                  </div>
-                  <Card.Text className="mb-3">
-                    "As a dermatologist, this platform has transformed how I provide care. I can efficiently manage more patients while delivering personalized attention."
-                  </Card.Text>
-                  <div className="d-flex align-items-center">
-                    <div className="testimonial-avatar me-3">
-                      DM
-                    </div>
-                    <div>
-                      <h6 className="mb-0 fw-bold">Dr. Michael R.</h6>
-                      <small className="text-muted">Dermatologist</small>
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-            
-            <Col md={6} lg={4} className="testimonial-card-anim delay-2">
-              <Card className="testimonial-card h-100 border-0 shadow-sm">
-                <Card.Body>
-                  <div className="d-flex mb-3">
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                  </div>
-                  <Card.Text className="mb-3">
-                    "The follow-up care on DermaScan is exceptional. I love how I can track my progress and communicate with my doctor whenever I have questions."
-                  </Card.Text>
-                  <div className="d-flex align-items-center">
-                    <div className="testimonial-avatar me-3">
-                      JT
-                    </div>
-                    <div>
-                      <h6 className="mb-0 fw-bold">James T.</h6>
-                      <small className="text-muted">Patient</small>
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-      
-      {/* Call to Action */}
-      <section className="cta-section py-5 bg-primary text-white">
-        <Container className="text-center">
-          <h2 className="fw-bold mb-3 bounce-in">Ready to Transform Your Skin Care?</h2>
-          <p className="lead mb-4">Join DermaScan today and experience dermatology care like never before.</p>
-          <Button variant="light" size="lg" className="rounded-pill">Get Started Now</Button>
-        </Container>
-      </section>
-      <Footer/>
     </div>
   );
 };
 
-export default Index;
+export default ServicesPage;

@@ -7,7 +7,7 @@ const DiagnosePage = () => {
 
   const handleMedicationChange = (index, field, value) => {
     const updated = [...medications];
-    updated[index][field] = value;
+    updated[index][field] = value ;
     setMedications(updated);
   };
 

@@ -17,12 +17,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <h5 className="sidebar-title">
       🩺 Dermatologist<br />Dashboard
-        {generalNotif && (
-          <span onClick={clearGeneralNotif} className="notif-bell-wrapper">
-            <i className="bi bi-bell-fill notif-bell"></i>
-            <span className="notif-count">!</span>
-          </span>
-        )}
+       
       </h5> 
  
       <Nav className="flex-column">

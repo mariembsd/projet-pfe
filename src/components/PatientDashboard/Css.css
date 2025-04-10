@@ -1,0 +1,46 @@
+.messenger-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+  .message-list-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .message-bar {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .message-bar:hover {
+    background-color: #f1f1f1;
+  }
+  .notification-bell {
+    position: relative;
+    display: inline-block;
+    font-size: 0.8em;
+  }
+  
+  .notification-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 0.6em;
+    padding: 3px 5px;
+  }
+  
+  /* Optional: Add animation for notifications */
+  @keyframes ring {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+    100% { transform: rotate(0deg); }
+  }
+  
+  .notification-bell:hover {
+    animation: ring 0.5s ease;
+  }

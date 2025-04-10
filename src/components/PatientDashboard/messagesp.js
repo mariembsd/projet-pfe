@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Card, ListGroup, Form, Button } from 'react-bootstrap';
-import './DermCss.css';
+import './Css.css';
 
-const PatientMessages = () => {
+const DocMessages = () => {
   const [reply, setReply] = useState('');
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([
@@ -11,8 +11,8 @@ const PatientMessages = () => {
       date: '2023-10-15',
       status: 'Unread',
       conversation: [
-        { sender: 'Patient', content: 'Hi, I’ve been experiencing severe acne lately.', date: '2023-10-15 10:30' },
-        { sender: 'Dermatologist', content: 'Try a salicylic acid cleanser.', date: '2023-10-15 11:00' }
+        { sender: 'Dermatologist', content: 'Hi, try lotion.', date: '2023-10-15 10:30' },
+        { sender: 'Patient', content: 'Hi, I’ve been experiencing severe acne lately.', date: '2023-10-15 11:00' }
       ]
     },
     {
@@ -20,8 +20,8 @@ const PatientMessages = () => {
       date: '2023-11-01',
       status: 'Read',
       conversation: [
-        { sender: 'Patient', content: 'I have a rash on my legs.', date: '2023-11-01 09:15' },
-        { sender: 'Dermatologist', content: 'Try avoiding harsh soaps.', date: '2023-11-01 10:00' }
+        { sender: 'Dermatologist', content: 'hello lets fix an appointment', date: '2023-11-01 09:15' },
+        { sender: 'Patient', content: 'I have a rash on my legs.', date: '2023-11-01 10:00' }
       ]
     },
     {
@@ -29,8 +29,8 @@ const PatientMessages = () => {
       date: '2023-12-05',
       status: 'Unread',
       conversation: [
-        { sender: 'Patient', content: 'The lotion is making it worse.', date: '2023-12-05 14:20' },
-        { sender: 'Dermatologist', content: 'Let’s try something stronger.', date: '2023-12-05 15:00' }
+        { sender: 'Dermatologist', content: 'lets try something stronger.', date: '2023-12-05 14:20' },
+        { sender: 'Patient', content: 'The lotion is making it worse.', date: '2023-12-05 15:00' }
       ]
     },
   ]);
@@ -51,7 +51,7 @@ const PatientMessages = () => {
     if (reply.trim()) {
       const updated = [...messages];
       const newMessage = {
-        sender: 'Dermatologist',
+        sender: 'Patient',
         content: reply,
         date: new Date().toLocaleString(),
       };
@@ -65,7 +65,7 @@ const PatientMessages = () => {
   };
 
   return (
-    <div className="messenger-container">
+    < div className="messenger-container">
       {/* Sidebar - Shows only if chat is selected */}
       {selectedChat !== null && (
         <div className="sidebar-list">
@@ -92,7 +92,7 @@ const PatientMessages = () => {
       {/* Full-screen message list if no chat selected */}
       {selectedChat === null && (
         <div className="full-message-list">
-          <h4 className="mb-4">💬 Patient Messages</h4>
+          <h4 className="mb-4">💬 Dermatologist Messages</h4>
           <div className="message-list-vertical">
             {messages.map((msg, index) => (
               <Card key={index} className="message-bar" onClick={() => handleSelectChat(index)}>
@@ -122,10 +122,10 @@ const PatientMessages = () => {
             </Card.Header>
             <Card.Body style={{ overflowY: 'auto' }}>
               {messages[selectedChat].conversation.map((msg, i) => (
-                <div key={i} className={`mb-3 ${msg.sender === 'Dermatologist' ? 'text-end' : 'text-start'}`}>
+                <div key={i} className={`mb-3 ${msg.sender === 'Patient' ? 'text-end' : 'text-start'}`}>
                   <div
                     className={`p-2 rounded ${
-                      msg.sender === 'Dermatologist' ? 'bg-info text-white' : 'bg-light'
+                      msg.sender === 'Patient' ? 'bg-info text-white' : 'bg-light'
                     }`}
                     style={{ display: 'inline-block', maxWidth: '70%' }}
                   >
@@ -158,4 +158,4 @@ const PatientMessages = () => {
   );
 };
 
-export default PatientMessages;
+export default DocMessages;

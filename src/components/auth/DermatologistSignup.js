@@ -8,7 +8,6 @@ const DermatologistSignup = () => {
     email: '',
     password: '',
     experience: '',
-    availabilityType: '',
     phone: '',
     address: '',
     diploma: null,
@@ -59,94 +58,79 @@ const DermatologistSignup = () => {
       <form onSubmit={handleSubmit} className="derma-form">
         <div className="form-group">
           <label>Full Name</label>
-          <input 
-            type="text" 
-            name="name" 
-            value={formData.name} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
           />
         </div>
 
         <div className="form-group">
           <label>Email</label>
-          <input 
-            type="email" 
-            name="email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
           />
         </div>
 
         <div className="form-group">
           <label>Password</label>
-          <input 
-            type="password" 
-            name="password" 
-            value={formData.password} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
           />
         </div>
 
         <div className="form-group">
           <label>Years of Experience</label>
-          <input 
-            type="number" 
-            name="experience" 
-            value={formData.experience} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="number"
+            name="experience"
+            value={formData.experience}
+            onChange={handleChange}
+            required
             min="0"
           />
         </div>
 
         <div className="form-group">
-          <label>Availability Type</label>
-          <select 
-            name="availabilityType" 
-            value={formData.availabilityType} 
-            onChange={handleChange} 
-            required
-          >
-            <option value="">Select</option>
-            <option value="full-time">Full-time</option>
-            <option value="part-time">Part-time</option>
-            <option value="consultation-basis">Consultation basis</option>
-          </select>
-        </div>
-
-        <div className="form-group">
           <label>Phone Number</label>
-          <input 
-            type="tel" 
-            name="phone" 
-            value={formData.phone} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
           />
         </div>
 
         <div className="form-group">
           <label>Address</label>
-          <input 
-            type="text" 
-            name="address" 
-            value={formData.address} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            required
             placeholder="Enter your clinic or practice location"
           />
         </div>
 
         <div className="form-group">
           <label>Diploma/Certificate</label>
-          <input 
-            type="file" 
-            name="diploma" 
-            onChange={handleChange} 
-            required 
+          <input
+            type="file"
+            name="diploma"
+            onChange={handleChange}
+            required
             accept=".pdf,.jpg,.png"
           />
           <small>Upload your medical license or diploma</small>
@@ -154,33 +138,33 @@ const DermatologistSignup = () => {
 
         <div className="form-group">
           <label>CIN Card Photo</label>
-          <input 
-            type="file" 
-            name="cinCard" 
-            onChange={handleChange} 
-            required 
+          <input
+            type="file"
+            name="cinCard"
+            onChange={handleChange}
+            required
             accept=".jpg,.jpeg,.png"
           />
           <small>Upload a photo of your CIN card</small>
         </div>
-
         <div className="form-group">
-          <label>Available Days for Consultation</label>
-          <div className="checkbox-group">
-            {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'  ].map(day => (
-              <label key={day} className="checkbox-item">
-                <input
-                  type="checkbox"
-                  name="availableDays"
-                  value={day}
-                  checked={formData.availableDays.includes(day)}
-                  onChange={handleChange}
-                />
-                {day}
-              </label>
-            ))}
-          </div>
-        </div>
+  <label>Available Days for Consultation</label>
+  <div className="day-grid">
+    {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map(day => (
+      <label key={day} className="day-checkbox">
+        <input
+          type="checkbox"
+          name="availableDays"
+          value={day}
+          checked={formData.availableDays.includes(day)}
+          onChange={handleChange}
+        />
+        {day}
+      </label>
+    ))}
+  </div>
+</div>
+
 
         <div className="form-actions">
           <button type="button" className="secondary-btn" onClick={() => navigate('/')}>

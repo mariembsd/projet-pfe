@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Badge } from 'react-bootstrap';
 import './Css.css';
 
 const Sidebar = ({ setActiveView }) => {
+  // State for notification counts
+  const [messageNotifications, setMessageNotifications] = useState(3);
+  const [appointmentNotifications, setAppointmentNotifications] = useState(2);
+
+  const handleMessagesClick = () => {
+    setMessageNotifications(0); // Clear message notifications when clicked
+  };
+
+  const handleAppointmentsClick = () => {
+    setAppointmentNotifications(0); // Clear appointment notifications when clicked
+  };
+
   return (
     <div className="bg-white border-end p-3" style={{ width: '250px', minHeight: '100vh' }}>
       <h5 className="mb-4 text-primary">Patient Dashboard</h5>
@@ -17,6 +30,26 @@ const Sidebar = ({ setActiveView }) => {
         </li>
         <li>
           <NavLink 
+            to="/patient/dashboard/docMessages" 
+            className={({ isActive }) => `btn w-100 text-start mb-2 ${isActive ? 'active' : ''}`}
+            onClick={handleMessagesClick}
+          >
+            <span className="d-flex align-items-center">
+              💬 Messages
+              {messageNotifications > 0 && (
+                <span className="notification-bell ms-2">
+                  🔔
+                  <Badge pill bg="danger" className="notification-count">
+                    {messageNotifications}
+                  </Badge>
+                </span>
+              )}
+            </span>
+          </NavLink>
+        </li>
+        
+        <li>
+          <NavLink 
             to="/patient/dashboard/dermatologists" 
             className={({ isActive }) => `btn w-100 text-start mb-2 ${isActive ? 'active' : ''}`}
           >
@@ -27,8 +60,19 @@ const Sidebar = ({ setActiveView }) => {
           <NavLink 
             to="/patient/dashboard/appointments" 
             className={({ isActive }) => `btn w-100 text-start mb-2 ${isActive ? 'active' : ''}`}
+            onClick={handleAppointmentsClick}
           >
-            📅 Appointments
+            <span className="d-flex align-items-center">
+              📅 Appointments
+              {appointmentNotifications > 0 && (
+                <span className="notification-bell ms-2">
+                  🔔
+                  <Badge pill bg="danger" className="notification-count">
+                    {appointmentNotifications}
+                  </Badge>
+                </span>
+              )}
+            </span>
           </NavLink>
         </li>
         <li>

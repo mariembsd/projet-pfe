@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ButtonGroup, ToggleButton, Modal, Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -15,12 +15,10 @@ const AppointmentCalendar = () => {
   const navigate = useNavigate();
   const doctor = location.state?.doctor;
 
-  const [view, setView] = useState('month');
   const [selectedDate, setSelectedDate] = useState(moment());
   const [showModal, setShowModal] = useState(false);
   const [selectedHour, setSelectedHour] = useState(null);
-
-  const [activeView, setActiveView] = useState('calendar'); // from DashboardPatient
+  const [activeView, setActiveView] = useState('calendar');
 
   const hours = Array.from({ length: 12 }, (_, i) => i + 8); // 8AM–8PM
 
@@ -58,32 +56,6 @@ const AppointmentCalendar = () => {
       ))}
     </div>
   );
-
-  const renderDayView = () => (
-    <div className="text-center">
-      <h5 className="mb-3">{selectedDate.format('dddd, MMMM Do YYYY')}</h5>
-      {renderHourButtons(selectedDate)}
-    </div>
-  );
-
-  const renderWeekView = () => {
-    const startOfWeek = moment(selectedDate).startOf('week');
-    const days = Array.from({ length: 7 }, (_, i) => moment(startOfWeek).add(i, 'days'));
-
-    return (
-      <div className="row">
-        {days.map((day, index) => (
-          <div key={index} className="col-md-4 mb-4">
-            <div className="border rounded p-3 h-100">
-              <h6 className="text-primary">{day.format('dddd')}</h6>
-              <small className="text-muted">{day.format('MMM D')}</small>
-              {renderHourButtons(day)}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  };
 
   const renderMonthView = () => {
     const startOfMonth = moment(selectedDate).startOf('month');
@@ -133,15 +105,11 @@ const AppointmentCalendar = () => {
   };
 
   const goToPrevious = () => {
-    if (view === 'day') setSelectedDate(prev => moment(prev).subtract(1, 'day'));
-    if (view === 'week') setSelectedDate(prev => moment(prev).subtract(1, 'week'));
-    if (view === 'month') setSelectedDate(prev => moment(prev).subtract(1, 'month'));
+    setSelectedDate(prev => moment(prev).subtract(1, 'month'));
   };
 
   const goToNext = () => {
-    if (view === 'day') setSelectedDate(prev => moment(prev).add(1, 'day'));
-    if (view === 'week') setSelectedDate(prev => moment(prev).add(1, 'week'));
-    if (view === 'month') setSelectedDate(prev => moment(prev).add(1, 'month'));
+    setSelectedDate(prev => moment(prev).add(1, 'month'));
   };
 
   const renderCalendar = () => (
@@ -153,29 +121,11 @@ const AppointmentCalendar = () => {
           <Button variant="outline-secondary" onClick={goToNext}>Next →</Button>
         </div>
         <h5 className="mb-0">
-          {view === 'month' && selectedDate.format('MMMM YYYY')}
-          {view === 'week' && `Week of ${moment(selectedDate).startOf('week').format('MMM D')}`}
-          {view === 'day' && selectedDate.format('dddd, MMM D')}
+          {selectedDate.format('MMMM YYYY')}
         </h5>
-        <ButtonGroup>
-          {['day', 'week', 'month'].map((val) => (
-            <ToggleButton
-              key={val}
-              type="radio"
-              variant="outline-primary"
-              name="view"
-              value={val}
-              checked={view === val}
-              onChange={(e) => setView(e.currentTarget.value)}
-            >
-              {val.charAt(0).toUpperCase() + val.slice(1)}
-            </ToggleButton>
-          ))}
-        </ButtonGroup>
+        <div /> {/* Empty to balance layout */}
       </div>
-      {view === 'month' && renderMonthView()}
-      {view === 'week' && renderWeekView()}
-      {view === 'day' && renderDayView()}
+      {renderMonthView()}
 
       {/* Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -191,11 +141,10 @@ const AppointmentCalendar = () => {
         </Modal.Footer>
       </Modal>
     </>
-  ); 
+  );
 
   return (
     <div className="d-flex">
-      
       <div className="p-4 flex-grow-1" style={{ backgroundColor: '#f4f6fa', minHeight: '100vh' }}>
         {activeView === 'profile' && <Profile />}
         {activeView === 'dermatologists' && <DermatologistList />}

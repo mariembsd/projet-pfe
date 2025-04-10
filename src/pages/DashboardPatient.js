@@ -5,6 +5,7 @@ import Profile from '../components/PatientDashboard/Profile';
 import DermatologistList from '../components/PatientDashboard/DermatologistList';
 import Appointments from '../components/PatientDashboard/Appointments';
 import Calendar from '../components/PatientDashboard/Calendar';
+import DocMessages from '../components/PatientDashboard/messagesp';
 
 const DashboardPatient = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const DashboardPatient = () => {
         {view === 'dermatologists' && <DermatologistList />}
         {view === 'appointments' && <Appointments />}
         {view === 'calendar' && <Calendar />}
+        {view === 'docMessages' && <DocMessages />}
         <Outlet />  {/* This renders the nested route components */}
       </div>
     </div>

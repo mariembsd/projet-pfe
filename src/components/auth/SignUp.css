@@ -161,3 +161,12 @@ body {
     opacity: 1;
   }
 }
+.double-row {
+  grid-column: span 2; /* This will make it span two columns if you're using CSS Grid */
+}
+
+/* Or if you're using flexbox */
+.double-row textarea {
+  height: 120px; /* Adjust as needed */
+  min-height: 120px;
+}

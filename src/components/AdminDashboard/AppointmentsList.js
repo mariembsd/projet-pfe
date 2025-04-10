@@ -3,35 +3,80 @@ import './AppointmentsList.css';
 
 const AppointmentsList = () => {
     const appointments = [
-        { id: 1, patient: 'John Doe', date: '2025-04-10', time: '10:00 AM' },
-        { id: 2, patient: 'Jane Smith', date: '2025-04-12', time: '2:00 PM' },
-        { id: 3, patient: 'Mike Johnson', date: '2025-04-15', time: '9:30 AM' }
+        { 
+            id: 1, 
+            patient: 'Sarah Johnson', 
+            dermatologist: 'Dr. Smith', 
+            date: 'Today, 10:30 AM', 
+            status: 'confirmed',
+            avatar: 'SJ'
+          },
+          { 
+            id: 2, 
+            patient: 'Michael Brown', 
+            dermatologist: 'Dr. Lee', 
+            date: 'Today, 11:45 AM', 
+            status: 'confirmed',
+            avatar: 'MB'
+          },
+          { 
+            id: 3, 
+            patient: 'Emily Davis', 
+            dermatologist: 'Dr. Wilson', 
+            date: 'Tomorrow, 9:15 AM', 
+            status: 'pending',
+            avatar: 'ED'
+          }
     ];
 
     return (
-        <div className="appointments-container">
-            <h2>Appointments List</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Patient</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {appointments.map(appointment => (
-                        <tr key={appointment.id}>
-                            <td>{appointment.id}</td>
-                            <td>{appointment.patient}</td>
-                            <td>{appointment.date}</td>
-                            <td>{appointment.time}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className="dashboard-section">
+        <div className="section-header">
+          <h3>Appointments</h3>
+          <button className="btn link">View All</button>
         </div>
+        <div className="appointments-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Dermatologist</th>
+                <th>Date & Time</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {appointments.map(appointment => (
+                <tr key={appointment.id}>
+                  <td>
+                    <div className="patient-info">
+                      <div className="patient-avatar">{appointment.avatar}</div>
+                      <div className="patient-name">{appointment.patient}</div>
+                    </div>
+                  </td>
+                  <td>{appointment.dermatologist}</td>
+                  <td>{appointment.date}</td>
+                  <td>
+                    <span className={`status-badge ${appointment.status}`}>
+                      {appointment.status}
+                    </span>
+                  </td>
+                  <td>
+                    <div className="action-buttons">
+                      <button className="btn small view">View</button>
+                      {appointment.status === 'pending' && (
+                        <button className="btn small primary">Confirm</button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
     );
 };
 

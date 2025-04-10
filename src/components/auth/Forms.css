@@ -148,3 +148,10 @@
     height: 18px;
     flex-shrink: 0; /* Prevents checkbox from shrinking */
   }
+  /* Add this to your Forms.css */
+.form-group small {
+  display: block;
+  margin-top: 6px;
+  color: #888; /* Grey color */
+  font-size: 0.85rem;
+}

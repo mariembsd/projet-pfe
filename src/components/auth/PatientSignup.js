@@ -111,6 +111,7 @@ const PatientSignup = () => {
           />
           {errors.birthdate && <span className="error-message">{errors.birthdate}</span>}
         </div>
+        
         <div className="form-group">
           <label>Phone Number</label>
           <input 
@@ -121,6 +122,7 @@ const PatientSignup = () => {
             required 
           />
         </div>
+        
         <div className="form-group">
           <label>Gender</label>
           <select 
@@ -154,16 +156,7 @@ const PatientSignup = () => {
           {errors.skinType && <span className="error-message">{errors.skinType}</span>}
         </div>
         
-        <div className="form-group">
-          <label>Medical Conditions</label>
-          <textarea 
-            name="medicalConditions" 
-            value={formData.medicalConditions} 
-            onChange={handleChange} 
-            placeholder="List any skin conditions or allergies"
-          />
-        </div>
-        
+        {/* Profile Image where Medical Conditions was */}
         <div className="form-group">
           <label>Profile Image</label>
           <input 
@@ -171,6 +164,18 @@ const PatientSignup = () => {
             name="profileImage" 
             onChange={handleChange} 
             accept="image/*"
+          />
+        </div>
+        
+        {/* Medical Conditions where Profile Image was - made larger */}
+        <div className="form-group double-row">
+          <label>Medical Conditions</label>
+          <textarea 
+            name="medicalConditions" 
+            value={formData.medicalConditions} 
+            onChange={handleChange} 
+            placeholder="List any skin conditions or allergies"
+            rows="4"
           />
         </div>
         

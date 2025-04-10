@@ -1,32 +1,130 @@
-.dermatologists-container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff3cd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-table {
+.dermatologists-table {
+    overflow-x: auto;
+  }
+  
+  .dermatologists-table table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
+  }
+  
+  .dermatologists-table th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-weight: 600;
     text-align: left;
-}
-
-th, td {
-    padding: 12px;
-}
-
-th {
-    background-color: #ffc107;
-    color: black;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #fff8e1;
-}
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .dermatologists-table td {
+    padding: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.9rem;
+  }
+  
+  .doctor-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .doctor-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #e0e7ff;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .doctor-name {
+    font-weight: 500;
+  }
+  
+  .status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+  }
+  
+  .status-badge.confirmed {
+    background-color: #ecfdf5;
+    color: #10b981;
+  }
+  
+  .status-badge.pending {
+    background-color: #fffbeb;
+    color: #f59e0b;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .quick-action-btn {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+  }
+  
+  .quick-action-btn:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(67, 97, 238, 0.1);
+  }
+  
+  .action-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  
+  .quick-action-btn span {
+    font-weight: 500;
+    color: var(--dark-color);
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    
+    .header-actions {
+      width: 100%;
+      justify-content: flex-end;
+    }
+    
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }

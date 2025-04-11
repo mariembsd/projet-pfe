@@ -170,3 +170,30 @@ body {
   height: 120px; /* Adjust as needed */
   min-height: 120px;
 }
+/* Add these to your Forms.css */
+.file-list {
+  margin-top: 10px;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff4444;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 5px;
+}
+
+.remove-btn:hover {
+  color: #cc0000;
+}

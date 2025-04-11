@@ -12,17 +12,42 @@ const PatientSignup = () => {
     phone: '',
     skinType: '',
     medicalConditions: '',
-    profileImage: null
+    profileImages: [], // Changed to array for multiple images
+    documents: []     // Added for multiple documents
   });
 
-  const [errors, setErrors] = useState({}); // Add errors state
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+    
+    if (files) {
+      // For file inputs
+      if (name === 'profileImages') {
+        setFormData(prev => ({
+          ...prev,
+          [name]: [...prev.profileImages, ...Array.from(files)]
+        }));
+      } else if (name === 'documents') {
+        setFormData(prev => ({
+          ...prev,
+          [name]: [...prev.documents, ...Array.from(files)]
+        }));
+      }
+    } else {
+      // For regular inputs
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+  };
+
+  const removeFile = (fileType, index) => {
     setFormData(prev => ({
       ...prev,
-      [name]: files ? files[0] : value
+      [fileType]: prev[fileType].filter((_, i) => i !== index)
     }));
   };
 
@@ -52,7 +77,7 @@ const PatientSignup = () => {
     if (validateForm()) {
       console.log('Patient form submitted:', formData);
       // Add your form submission logic here
-      navigate('/success'); // Redirect to success page after submission
+      navigate('/success');
     }
   };
 
@@ -155,19 +180,58 @@ const PatientSignup = () => {
           </select>
           {errors.skinType && <span className="error-message">{errors.skinType}</span>}
         </div>
-        
-        {/* Profile Image where Medical Conditions was */}
+        {/* Multiple Profile Images */} 
         <div className="form-group">
-          <label>Profile Image</label>
+          <label>Images (Multiple allowed)</label>
           <input 
             type="file" 
-            name="profileImage" 
+            name="profileImages" 
             onChange={handleChange} 
             accept="image/*"
+            multiple
           />
+          <div className="file-list">
+            {formData.profileImages.map((file, index) => (
+              <div key={index} className="file-item">
+                <span>{file.name}</span>
+                <button 
+                  type="button" 
+                  className="remove-btn"
+                  onClick={() => removeFile('profileImages', index)}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
         
-        {/* Medical Conditions where Profile Image was - made larger */}
+        {/* Multiple Documents */}
+        <div className="form-group">
+          <label>Documents (Multiple allowed)</label>
+          <input 
+            type="file" 
+            name="documents" 
+            onChange={handleChange} 
+            multiple
+          />
+          <div className="file-list">
+            {formData.documents.map((file, index) => (
+              <div key={index} className="file-item">
+                <span>{file.name}</span>
+                <button 
+                  type="button" 
+                  className="remove-btn"
+                  onClick={() => removeFile('documents', index)}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Medical Conditions */}
         <div className="form-group double-row">
           <label>Medical Conditions</label>
           <textarea 

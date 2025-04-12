@@ -16,14 +16,14 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <h5 className="sidebar-title">
-      🩺 Dermatologist<br />Dashboard
+      🩺 Dermatologist Dashboard
        
       </h5> 
  
       <Nav className="flex-column">
-        <Nav.Link as={Link} to="profile">👤 Profile</Nav.Link>
+        <Nav.Link as={Link} to="profile" className=" text-light">👤 Profile</Nav.Link>
 
-        <Nav.Link as={Link} to="messagesd" onClick={clearMessages}>
+        <Nav.Link as={Link} to="messagesd" onClick={clearMessages} className=" text-light">
           💬 Messages
           {messageNotif > 0 && (
             <span className="notif-bell-wrapper">
@@ -33,7 +33,7 @@ const Sidebar = () => {
           )}
         </Nav.Link>
 
-        <Nav.Link as={Link} to="appointments" onClick={clearAppointments}>
+        <Nav.Link as={Link} to="appointments" onClick={clearAppointments} className=" text-light">
           📅 Appointments
           {appointmentNotif > 0 && (
             <span className="notif-bell-wrapper">
@@ -43,8 +43,8 @@ const Sidebar = () => {
           )}
         </Nav.Link>
 
-        <Nav.Link as={Link} to="consulted-patients">👥 Patients Consulted</Nav.Link>
-        <Nav.Link as={Link} to="diagnostic">🩺 Diagnostic</Nav.Link>
+        <Nav.Link as={Link} to="consulted-patients" className=" text-light">👥 Patients Consulted</Nav.Link>
+        <Nav.Link as={Link} to="diagnostic" className=" text-light">🩺 Diagnostic</Nav.Link>
       </Nav>
     </div>
   );

@@ -5,7 +5,7 @@ import Profile from '../components/PatientDashboard/Profile';
 import DermatologistList from '../components/PatientDashboard/DermatologistList';
 import Appointments from '../components/PatientDashboard/Appointments';
 import Calendar from '../components/PatientDashboard/Calendar';
-import DocMessages from '../components/PatientDashboard/messagesp';
+import DocMessages from '../components/PatientDashboard/Messagesp';
 
 const DashboardPatient = () => {
   const navigate = useNavigate();

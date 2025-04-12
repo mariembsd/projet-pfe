@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Card, ListGroup, Form, Button } from 'react-bootstrap';
 import './Css.css';
 
-const DocMessages = () => {
+const Messagesp = () => {
   const [reply, setReply] = useState('');
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([
@@ -158,4 +158,4 @@ const DocMessages = () => {
   );
 };
 
-export default DocMessages;
+export default Messagesp;

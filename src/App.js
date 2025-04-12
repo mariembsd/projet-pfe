@@ -103,7 +103,7 @@ import Sidebar from './components/DermatologistDashboard/Sidebar';
 import Messagesd from './components/DermatologistDashboard/Messagesd';
 import AppointmentConfirmation from './components/PatientDashboard/AppointmentConfirmation';
 import AppointmentInfo from './components/PatientDashboard/AppointmentInfo';
-import DocMessages from './components/PatientDashboard/messagesp';
+import Messagesp from './components/PatientDashboard/Messagesp';
 
 
 
@@ -124,7 +124,6 @@ const App = () => {
         
         <Route path="/patient-signup" element={<PatientSignup />} />
         <Route path="/dermatologist-signup" element={<DermatologistSignup />} />
-        <Route path="/patient/dashboard/docMessages" element={<DocMessages />} />
         
         {/* <Route path="/success" element={<SuccessPage />} /> */}
 
@@ -163,6 +162,9 @@ const App = () => {
           <Route path="dermatologists" element={<DermatologistList />} />
           <Route path="appointments" element={<Appointments />} />
           <Route path="calendar" element={<Calendar />} />
+          
+          <Route path="/patient/dashboard/Messagesp" element={<Messagesp />} />
+
         </Route>
       
 

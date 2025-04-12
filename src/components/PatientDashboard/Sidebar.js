@@ -30,7 +30,7 @@ const Sidebar = ({ setActiveView }) => {
         </li>
         <li>
           <NavLink 
-            to="/patient/dashboard/docMessages" 
+            to="/patient/dashboard/Messagesp" 
             className={({ isActive }) => `btn w-100 text-start mb-2 ${isActive ? 'active' : ''}`}
             onClick={handleMessagesClick}
           >
@@ -47,6 +47,9 @@ const Sidebar = ({ setActiveView }) => {
             </span>
           </NavLink>
         </li>
+
+        
+        
         
         <li>
           <NavLink 

@@ -148,45 +148,49 @@ const PatientsList = () => {
                 </table>
             </div>
 
-            {/* Patient Details Modal */}
+            {/* Patient Details Modal - Improved */}
             {selectedPatient && (
                 <div className="patient-details-modal">
-                    <div className="modal-content">
+                    <div className="modal-overlay" onClick={handleCloseDetails}></div>
+                    <div className="modal-content-enhanced">
                         <button className="close-btn" onClick={handleCloseDetails}>×</button>
                         <h3>Patient Details</h3>
                         
                         <div className="patient-avatar-large">{selectedPatient.avatar}</div>
                         
                         {isEditing ? (
-                            <div className="edit-form">
-                                <div className="form-group">
+                            <div className="edit-form-enhanced">
+                                <div className="form-group-enhanced">
                                     <label>Name:</label>
                                     <input
                                         type="text"
                                         name="patient"
                                         value={editFormData.patient}
                                         onChange={handleEditChange}
+                                        className="form-input-enhanced"
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group-enhanced">
                                     <label>Age:</label>
                                     <input
                                         type="text"
                                         name="age"
                                         value={editFormData.age}
                                         onChange={handleEditChange}
+                                        className="form-input-enhanced"
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group-enhanced">
                                     <label>Condition:</label>
                                     <input
                                         type="text"
                                         name="condition"
                                         value={editFormData.condition}
                                         onChange={handleEditChange}
+                                        className="form-input-enhanced"
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group-enhanced">
                                     <label>Status:</label>
                                     <div className="form-field">
                                         <span className={`status-badge ${selectedPatient.status}`}>
@@ -194,42 +198,42 @@ const PatientsList = () => {
                                         </span>
                                     </div>
                                 </div>
-                                <div className="form-actions">
+                                <div className="form-actions-enhanced">
                                     <button className="btn primary" onClick={handleSave}>
                                         Save Changes
                                     </button>
-                                    <button className="btn" onClick={() => setIsEditing(false)}>
+                                    <button className="btn secondary" onClick={() => setIsEditing(false)}>
                                         Cancel
                                     </button>
                                 </div>
                             </div>
                         ) : (
-                            <div className="details-view">
-                                <div className="form-group">
+                            <div className="details-view-enhanced">
+                                <div className="form-group-enhanced">
                                     <label>Name:</label>
-                                    <div className="form-field">{selectedPatient.patient}</div>
+                                    <div className="form-field-enhanced">{selectedPatient.patient}</div>
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group-enhanced">
                                     <label>Age:</label>
-                                    <div className="form-field">{selectedPatient.age}</div>
+                                    <div className="form-field-enhanced">{selectedPatient.age}</div>
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group-enhanced">
                                     <label>Condition:</label>
-                                    <div className="form-field">{selectedPatient.condition}</div>
+                                    <div className="form-field-enhanced">{selectedPatient.condition}</div>
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group-enhanced">
                                     <label>Status:</label>
-                                    <div className="form-field">
+                                    <div className="form-field-enhanced">
                                         <span className={`status-badge ${selectedPatient.status}`}>
                                             {selectedPatient.status}
                                         </span>
                                     </div>
                                 </div>
-                                <div className="form-actions">
+                                <div className="form-actions-enhanced">
                                     <button className="btn edit" onClick={() => handleEdit(selectedPatient)}>
                                         Edit
                                     </button>
-                                    <button className="btn" onClick={handleCloseDetails}>
+                                    <button className="btn secondary" onClick={handleCloseDetails}>
                                         Close
                                     </button>
                                 </div>

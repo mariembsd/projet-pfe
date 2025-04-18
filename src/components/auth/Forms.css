@@ -154,4 +154,63 @@
   margin-top: 6px;
   color: #888; /* Grey color */
   font-size: 0.85rem;
+} /* Font & Background */
+body {
+  background: #f5f0e1; /* beige background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-page {
+  height: 100vh;
+  background: linear-gradient(to bottom right, #f5f0e1, #d6c0b4);
+}
+
+.login-box {
+  background-color: #fffaf4;
+  padding: 2.5rem;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid #e2d4c4;
+}
+
+/* Heading */
+.login-box h2 {
+  color: #5c4033; /* dark brown */
+  font-weight: 600;
+}
+
+/* Labels */
+.login-box label {
+  color: #5c4033;
+  font-weight: 500;
+}
+
+/* Inputs */
+.login-box .form-control {
+  border-radius: 10px;
+  border: 1px solid #c9b8a4;
+}
+
+/* Button */
+.btn-brown {
+  background-color: #8b5e3c;
+  color: white;
+  font-weight: 500;
+  transition: background 0.3s ease;
+  border-radius: 10px;
+}
+
+.btn-brown:hover {
+  background-color: #6e4227;
+}
+
+/* Link */
+.login-box a {
+  color: #8b5e3c;
+  text-decoration: none;
+}
+
+.login-box a:hover {
+  text-decoration: underline;
 }

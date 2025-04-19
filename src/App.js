@@ -104,6 +104,7 @@ import Messagesd from './components/DermatologistDashboard/Messagesd';
 import AppointmentConfirmation from './components/PatientDashboard/AppointmentConfirmation';
 import AppointmentInfo from './components/PatientDashboard/AppointmentInfo';
 import Messagesp from './components/PatientDashboard/Messagesp';
+import AdminLogin from './components/auth/AdminLogin';
 
 
 
@@ -120,6 +121,8 @@ const App = () => {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/book-an-appointment" element={<BookAppointment />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login-admin" element={<AdminLogin />} />
+
         <Route path="/signup" element={<SignUp />} />
         
         <Route path="/patient-signup" element={<PatientSignup />} />
